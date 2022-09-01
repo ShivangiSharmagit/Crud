@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Crud.Models.Class1>
+
+@{
+    ViewBag.Title = "List Of All Employees";
+}
+<div>
+    @Html.ActionLink("Create New", "Create")
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-3">
+            <table class="table-bordered table-responsive table-hover">
+                <tr>
+                    <th>ID</th>
+                    <th>NAME</th>
+                    <th>DEPARTMENT</th>
+                    <th>SALARY</th>
+                    <th>ADDRESS</th>
+                    <th>GENDER</th>
+                    <th>EDIT</th>
+                    <th>DETAILS</th>
+                    <th>DELETE</th>
+                </tr>
+                @foreach (var d in Model)
+                {
+            <tr>
+                <td>@d.ID</td>
+                <td>@d.NAME</td>
+                <td>@d.DEPARTMENT</td>
+                <td>@d.SALARY</td>
+                <td>@d.ADDRESS</td>
+                <td>@d.GENDER</td>
+                <td>
+                    <a href="@Url.Action("Updatee", "home", new { d.ID }) " type=" button"   class=" btn btn-primary" style=" background-color :midnightblue "> Edit</a>
+                </td>
+                <td>
+                    <a href="@Url.Action("Details","home",new { d.ID }) "type=" button"   class=" btn btn-primary" style=" background-color :midnightblue "> Deatils</a>
+                </td>
+                <td>
+                    <a href="@Url.Action("Delete","home",new { d.ID })" type=" button"   class=" btn btn-warning" style=" background-color :midnightblue "> Delete</a>
+
+                </td>
+
+
+            </tr>
+                }
+               
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DataBaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Education">
+          <Key>
+            <PropertyRef Name="EID" />
+          </Key>
+          <Property Name="EID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="COURSE" Type="varchar" MaxLength="90" />
+          <Property Name="BRANCH" Type="varchar" MaxLength="90" />
+          <Property Name="PERCENTAGEE" Type="int" />
+        </EntityType>
+        <EntityType Name="Employee1">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="varchar" MaxLength="90" />
+          <Property Name="SALARY" Type="money" />
+          <Property Name="GENDER" Type="varchar" MaxLength="90" />
+          <Property Name="ADDRESS" Type="varchar" MaxLength="90" />
+          <Property Name="DEPARTMENT" Type="varchar" MaxLength="90" />
+          <Property Name="EDID" Type="int" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__Employee1__EDID__2A4B4B5E">
+          <End Role="Education" Type="Self.Education" Multiplicity="0..1" />
+          <End Role="Employee1" Type="Self.Employee1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Education">
+              <PropertyRef Name="EID" />
+            </Principal>
+            <Dependent Role="Employee1">
+              <PropertyRef Name="EDID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DataBaseModelStoreContainer">
+          <EntitySet Name="Education" EntityType="Self.Education" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee1" EntityType="Self.Employee1" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Employee1__EDID__2A4B4B5E" Association="Self.FK__Employee1__EDID__2A4B4B5E">
+            <End Role="Education" EntitySet="Education" />
+            <End Role="Employee1" EntitySet="Employee1" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DataBaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Employee1">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="String" MaxLength="90" FixedLength="false" Unicode="false" />
+          <Property Name="SALARY" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="GENDER" Type="String" MaxLength="90" FixedLength="false" Unicode="false" />
+          <Property Name="ADDRESS" Type="String" MaxLength="90" FixedLength="false" Unicode="false" />
+          <Property Name="DEPARTMENT" Type="String" MaxLength="90" FixedLength="false" Unicode="false" />
+          <Property Name="EDID" Type="Int32" />
+          <NavigationProperty Name="Education" Relationship="DataBaseModel.FK__Employee1__EDID__2A4B4B5E" FromRole="Employee1" ToRole="Education" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="DataBaseEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Employee1" EntityType="Self.Employee1" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <EntitySet Name="Education" EntityType="DataBaseModel.Education" />
+          <AssociationSet Name="FK__Employee1__EDID__2A4B4B5E" Association="DataBaseModel.FK__Employee1__EDID__2A4B4B5E">
+            <End Role="Education" EntitySet="Education" />
+            <End Role="Employee1" EntitySet="Employee1" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Education">
+          <Key>
+            <PropertyRef Name="EID" />
+          </Key>
+          <Property Name="EID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="COURSE" Type="String" MaxLength="90" FixedLength="false" Unicode="false" />
+          <Property Name="BRANCH" Type="String" MaxLength="90" FixedLength="false" Unicode="false" />
+          <Property Name="PERCENTAGEE" Type="Int32" />
+          <NavigationProperty Name="Employee1" Relationship="DataBaseModel.FK__Employee1__EDID__2A4B4B5E" FromRole="Education" ToRole="Employee1" />
+        </EntityType>
+        <Association Name="FK__Employee1__EDID__2A4B4B5E">
+          <End Type="DataBaseModel.Education" Role="Education" Multiplicity="0..1" />
+          <End Type="DataBaseModel.Employee1" Role="Employee1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Education">
+              <PropertyRef Name="EID" />
+            </Principal>
+            <Dependent Role="Employee1">
+              <PropertyRef Name="EDID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DataBaseModelStoreContainer" CdmEntityContainer="DataBaseEntities1">
+          <EntitySetMapping Name="Employee1">
+            <EntityTypeMapping TypeName="DataBaseModel.Employee1">
+              <MappingFragment StoreEntitySet="Employee1">
+                <ScalarProperty Name="EDID" ColumnName="EDID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="SALARY" ColumnName="SALARY" />
+                <ScalarProperty Name="GENDER" ColumnName="GENDER" />
+                <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+                <ScalarProperty Name="DEPARTMENT" ColumnName="DEPARTMENT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="DataBaseModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Education">
+            <EntityTypeMapping TypeName="DataBaseModel.Education">
+              <MappingFragment StoreEntitySet="Education">
+                <ScalarProperty Name="PERCENTAGEE" ColumnName="PERCENTAGEE" />
+                <ScalarProperty Name="BRANCH" ColumnName="BRANCH" />
+                <ScalarProperty Name="COURSE" ColumnName="COURSE" />
+                <ScalarProperty Name="EID" ColumnName="EID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

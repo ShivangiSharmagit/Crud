@@ -1,0 +1,58 @@
+﻿@model Crud.Models.Class1
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Class1</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GENDER)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GENDER)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DEPARTMENT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DEPARTMENT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SALARY)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SALARY)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ADDRESS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ADDRESS)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Updatee", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Read")
+</p>
